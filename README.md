@@ -6,15 +6,20 @@
 
 ## 👥 스터디원 소개
 
-<div align="center">
+## 👥 스터디원 소개
 
-| <img src="https://github.com/Dev-JihyeMoon.png" width="80"> | <img src="https://github.com/gihyeonBae.png" width="80"> | <img src="https://github.com/JoostLean.png" width="80"> | <img src="https://github.com/isle-blu.png" width="80"> |
-| :---: | :---: | :---: | :---: |
-| [문지혜 (팀장)](https://github.com/Dev-JihyeMoon) | [배기현](https://github.com/gihyeonBae) | [윤주상](https://github.com/JoostLean) | [양덕관](https://github.com/isle-blu) |
-
-</div>
-
-<br>
+<center>
+	<table>
+		<tbody>
+			<tr>
+				<td align="center"><a href="https://github.com/Dev-JihyeMoon"><img src="https://avatars.githubusercontent.com/u/67064571?v=4" width="100px;" alt="팀장"/><br /><sub><b>팀장</b></sub><br /></a><br><p>문지혜</p></td>
+				<td align="center"><a href="https://github.com/gihyeonBae"><img src="https://avatars.githubusercontent.com/gihyeonBae" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>배기현</p></td>
+				<td align="center"><a href="https://github.com/JoostLean"><img src="https://avatars.githubusercontent.com/JoostLean" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>윤주상</p></td>
+				<td align="center"><a href="https://github.com/isle-blu"><img src="https://avatars.githubusercontent.com/isle-blu" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>양덕관</p></td>
+			</tr>
+		</tbody>
+	</table>
+</center>
 
 ## 📆 스터디 규칙
 
