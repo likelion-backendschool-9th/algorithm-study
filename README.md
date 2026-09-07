@@ -6,12 +6,15 @@
 
 ## 👥 스터디원 소개
 
-| 이름 | 깃허브 프로필 |
-| :---: | :---: |
-| 문지혜 (팀장) | [@Dev-JihyeMoon]([https://github.com](https://github.com/Dev-JihyeMoon)) |
-| 배기현 | [@gihyeonBae]([https://github.com](https://github.com/gihyeonBae)) |
-| 윤주상 | [@JoostLean]([https://github.com](https://github.com/JoostLean)) |
-| 양덕관 | [@isle-blu]([https://github.com](https://github.com/isle-blu)) |
+## 👥 스터디원 소개
+
+<div align="center">
+
+| <img src="https://github.com/Dev-JihyeMoon.png" width="80"> | <img src="https://github.com/gihyeonBae.png" width="80"> | <img src="https://github.com/JoostLean.png" width="80"> | <img src="https://github.com/isle-blu.png" width="80"> |
+| :---: | :---: | :---: | :---: |
+| [문지혜 (팀장)](https://github.com/Dev-JihyeMoon) | [배기현](https://github.com/gihyeonBae) | [윤주상](https://github.com/JoostLean) | [양덕관](https://github.com/isle-blu) |
+
+</div>
 
 <br>
 
