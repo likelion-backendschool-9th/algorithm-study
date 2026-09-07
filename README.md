@@ -6,8 +6,6 @@
 
 ## 👥 스터디원 소개
 
-## 👥 스터디원 소개
-
 <div align="center">
 
 | <img src="https://github.com/Dev-JihyeMoon.png" width="80"> | <img src="https://github.com/gihyeonBae.png" width="80"> | <img src="https://github.com/JoostLean.png" width="80"> | <img src="https://github.com/isle-blu.png" width="80"> |
