@@ -58,5 +58,5 @@ git pull origin main
 
 ### 3. 원격 저장소에 Push
 ```bash
-git push origin main/week01-jihye
+git push origin main
 ```
