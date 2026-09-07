@@ -46,11 +46,10 @@
 
 ## 🚀 깃허브 이용 프로세스 (Workflow)
 
-### 1. 로컬 저장소 최신화 및 브랜치 생성
+### 1. 로컬 저장소 최신화 
 ```bash
 git checkout main
 git pull origin main
-git checkout -b feature/week01-jihye
 ```
 
 ### 2. 문제 풀이 후 커밋 권장 양식(Commit)
