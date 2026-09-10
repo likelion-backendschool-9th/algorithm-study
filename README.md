@@ -12,8 +12,8 @@
 			<tr>
 				<td align="center"><a href="https://github.com/Dev-JihyeMoon"><img src="https://avatars.githubusercontent.com/u/67064571?v=4" width="100px;" alt="팀장"/><br /><sub><b>팀장</b></sub><br /></a><br><p>문지혜</p></td>
 				<td align="center"><a href="https://github.com/gihyeonBae"><img src="https://avatars.githubusercontent.com/gihyeonBae" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>배기현</p></td>
-				<td align="center"><a href="https://github.com/JoostLean"><img src="https://avatars.githubusercontent.com/JoostLean" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>윤주상</p></td>
 				<td align="center"><a href="https://github.com/isle-blu"><img src="https://avatars.githubusercontent.com/isle-blu" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>양덕관</p></td>
+				<td align="center"><a href="https://github.com/JoostLean"><img src="https://avatars.githubusercontent.com/JoostLean" width="100px;" alt="스터디원"/><br /><sub><b>스터디원</b></sub><br /></a><br><p>윤주상</p></td>
 			</tr>
 		</tbody>
 	</table>
