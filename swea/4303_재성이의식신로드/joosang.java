@@ -16,12 +16,10 @@ class Solution {
     // 격자의 행, 열 크기
     static int N, M;
     // 음식점 가격이 있는 격자판
-    // 가격이 0~9이므로 int 대신 byte로 저장해 메모리를 줄인다.
-    static byte[][] board;
-    // 특정 위치와 음식 섭취 상태에서의 최소 누적 비용
-    // 전체 dp[i][j][mask] 대신 현재 행과 다음 행만 저장한다.
-    static int[][] currentRow;
-    static int[][] nextRow;
+    static int[][] board;
+    // 특정 위치 및 그 위치 방문 후 식사 시 최소 누적 비용
+    // dp[i][j][mask] = (i, j)에 mask 상태로 도착하는 최소 비용
+    static int[][][] dp;
 
     public static void main(String[] args) throws Exception {
         // 표준 입력 읽기용 BufferedReader
@@ -31,12 +29,6 @@ class Solution {
         StringBuilder answer = new StringBuilder();
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            // 이전 테스트 케이스의 큰 배열 참조를 먼저 제거한다.
-            // 다음 테스트의 board를 만들 때 두 격자가 동시에 남지 않게 한다.
-            board = null;
-            currentRow = null;
-            nextRow = null;
-
             // 받아온 br 한 줄을 읽고, 공백 기준으로 나눈다
             StringTokenizer st = new StringTokenizer(br.readLine());
             // 첫번째 토큰을 행 수 N으로 저장
@@ -49,7 +41,7 @@ class Solution {
             // M + 2 - 열을 좌우로 한칸씩 더 만듬
             // N의 경우 상하로, M의 경우 좌우로 공간을 만들기 때문에 범위 검사 코드를 줄여준다
             // 전체 격자판의 상하좌우로 바깥 여백이 하나씩 있다고 생각하면 된다
-            board = new byte[N + 2][M + 2];
+            board = new int[N + 2][M + 2];
             // 행을 한 줄씩 읽는다
             for (int i = 1; i <= N; i++) {
                 // 한 줄에 있는 내용을 가져온다
@@ -63,7 +55,7 @@ class Solution {
                     // 읽은 문자를 숫자로 바꿔서 저장
                     // '.'인 경우 가격이 없으므로 0
                     // 가격이 저장되어 있으면 가격 저장 ('0'이란 문자열을 빼면 숫자형으로 변환되어 저장됨)
-                    board[i][j] = (byte) ((c == '.') ? 0 : c - '0');
+                    board[i][j] = (c == '.') ? 0 : c - '0';
                 }
             }
 
@@ -79,19 +71,23 @@ class Solution {
     }
 
     static int solve() {
-        // 위치와 상태별 최소 비용을 저장하는 배열
+        // 위치와 상태별 최소 비용을 저장하는 3차원 배열
         // 16은 상태 비트가 4개라서 가능한 조합이 2⁴ = 16개이기 때문
-        // ex) currentRow[3][5]는 현재 행의 3열에서 상태값이 5일 때의 최소 비용을 의미
-        currentRow = new int[M + 1][16];
-        nextRow = new int[M + 1][16];
+        // ex) dp[2][3][5]는 (2, 3) 위치에서 상태값이 5일 때의 최소 비용을 의미
+        dp = new int[N + 1][M + 1][16];
 
         // [초기화]
-        // 현재 행과 다음 행의 모든 상태를 INF로 초기화
-        // (실제로 도달 가능한 경로를 찾으면 더 작은 비용으로 갱신)
-        fillInf(currentRow);
-        fillInf(nextRow);
+        // dp 안에서 행 하나를 차례대로 꺼낸다
+        for (int[][] row : dp) {
+            // 현재 행에서 한 칸의 상태 배열을 꺼낸다
+            for (int[] cell : row) {
+                // 모든 dp의 열과 행을 INF로 초기화
+                // (실제로 도달 가능한 경로를 찾으면 더 작은 비용으로 갱신)
+                Arrays.fill(cell, INF);
+            }
+        }
         // 출발 칸은 모든 상태를 비용 0으로 시작
-        Arrays.fill(currentRow[1], 0);
+        Arrays.fill(dp[1][1], 0);
 
         // mask = 0  / 2진수 = 0000 / 먹은 방향 : 없음
         // mask = 1  / 2진수 = 0001 / 먹은 방향 : UP_RIGHT
@@ -121,7 +117,7 @@ class Solution {
                 // mask - '현재 칸'의 16방위에 음식점을 이미 먹었는지 기록한 상수 (마킹)
                 for (int mask = 0; mask < 16; mask++) {
                     // 현재 위치(i,j)와 상태(mask)로 도착했을 때의 최소 비용(cost)
-                    int cost = currentRow[j][mask];
+                    int cost = dp[i][j][mask];
                     // [i][j][mask]에 도착할 방법이 없다면(INF) 다음 상태 확인
                     if (cost == INF) continue;
 
@@ -141,27 +137,18 @@ class Solution {
                     }
                 }
             }
-
-            // 현재 행의 아래 이동 결과가 nextRow에 쌓여 있다.
-            // 다음 행을 처리하기 전에 두 배열을 교체한다.
-            if (i < N) {
-                int[][] temp = currentRow;
-                currentRow = nextRow;
-                nextRow = temp;
-                fillInf(nextRow);
-            }
         }
 
         // 반복문 전체가 끝나면 도착점 (N, M)의 모든 상태별 최소 비용이 계산되어 있다.
 
         // answer를 매우 큰 값으로 시작
         int answer = INF;
-        // currentRow[M] -> 마지막 행의 M열 -> 도착점
-        // currentRow[M][mask] -> dp 도착점에서 어느 방향(mask)으로 왔는지
+        // dp[N][M] -> dp[최대 행수][최대 열수] -> dp 도착점
+        // dp[N][M][mask] -> dp 도착점에서 어느 방향(mask)으로 왔는지
         // 모르므로 16가지 방향 케이스를 모두 검사
         // 16방위 중 제일 작은 값을 answer에 대입
         for (int mask = 0; mask < 16; mask++) {
-            answer = Math.min(answer, currentRow[M][mask]);
+            answer = Math.min(answer, dp[N][M][mask]);
         }
         // answer 반환
         return answer;
@@ -205,7 +192,7 @@ class Solution {
             // (i, j) -> (i, j+1), next는 새 칸 (i, j+1) 기준의 상태
             // 현재 경로의 누적 비용 cost와 이번에 새로 먹은 비용 eat을 더한 값이,
             // (i, j + 1)의 next 상태에 저장된 기존 비용보다 작으면 교체한다.
-            currentRow[j + 1][next] = Math.min(currentRow[j + 1][next], cost + eat);
+            dp[i][j + 1][next] = Math.min(dp[i][j + 1][next], cost + eat);
         }
     }
 
@@ -245,7 +232,7 @@ class Solution {
             // (i, j) -> (i+1, j), next는 새 칸 (i+1, j) 기준의 상태
             // 현재 경로의 누적 비용 cost와 이번에 새로 먹은 비용 eat을 더한 값이,
             // (i + 1, j)의 next 상태에 저장된 기존 비용보다 작으면 교체한다.
-            nextRow[j][next] = Math.min(nextRow[j][next], cost + eat);
+            dp[i + 1][j][next] = Math.min(dp[i + 1][j][next], cost + eat);
         }
     }
 
@@ -259,12 +246,5 @@ class Solution {
     static int bit(int mask, int cell) {
         // has 메서드로 비트 포함 여부 확인
         return has(mask, cell) ? 1 : 0;
-    }
-
-    // 한 행에 있는 모든 열과 상태를 INF로 초기화
-    static void fillInf(int[][] row) {
-        for (int[] cell : row) {
-            Arrays.fill(cell, INF);
-        }
     }
 }
