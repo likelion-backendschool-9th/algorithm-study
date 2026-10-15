@@ -4,9 +4,6 @@ def solution(food):
     
     for i in range(1, len(food)):
         cnt = food[i]
-        if cnt % 2 == 1:
-            cnt -= 1
-        
         cnt //= 2
         
         for j in range(cnt):
