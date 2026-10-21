@@ -1,5 +1,7 @@
 import java.util.*;
 
+// DP = 기억하며 푸는 알고리즘! 기억하며 풀기 기법!
+
 class Solution {
     
     // 1. 메모이제이션을 위해 2차원 배열 생성
