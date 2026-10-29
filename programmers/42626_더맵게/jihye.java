@@ -8,7 +8,7 @@ class Solution {
             heep.offer((long)i);
         }
 
-        int count = 0;
+        int answer = 0;
 
         // 가장 맵지 않은 음식이 K 미만인 동안 반복(=모든 음식의 스코빌 지수가 k 이상인 경우 반복 중지)
         while(heep.peek() < K) {
@@ -22,9 +22,9 @@ class Solution {
 
             // 새로운 음식의 스코빌 지수
             heep.offer(firstFood + secondFood * 2);
-            count++;
+            answer++;
         }
 
-        return count;
+        return heep.poll()<K?-1:answer;
     }
 }
